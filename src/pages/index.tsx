@@ -38,7 +38,7 @@ export default function Home({todos : severTodos}) {
       status: false
     }
 
-    await api.post("/createTodo", newTodo)
+    await api.post("/api/createTodo", newTodo)
     setInputTodo("")
     currentTodos.push(newTodo)
     setTodos(currentTodos)
@@ -50,14 +50,14 @@ export default function Home({todos : severTodos}) {
      todo.id === id ? {...todo, status: !todo.status} : todo
     )
     const currentTodo = updatedTodos.find((todo) => todo.id === id)
-    await api.post("/updateTodo", {id,status: currentTodo.status})
+    await api.post("/api/updateTodo", {id,status: currentTodo.status})
     setTodos(updatedTodos)
   }
 
 
   const handleDeleteTOdo = async (id: string) => {
    const currentTodos = todos.filter((todo) => todo.id !== id)
-   await api.post("/deleteTodo", {id})
+   await api.post("/api/deleteTodo", {id})
    setTodos(currentTodos)
   }
 

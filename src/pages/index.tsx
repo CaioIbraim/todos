@@ -3,7 +3,7 @@ import api from "../../utils/api"
 import { GetServerSideProps } from 'next'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const {data: todos} = await api.get("/getTodos")
+  const {data: todos} = await api.get("/api/getTodos")
   return {
     props: {
       ...todos

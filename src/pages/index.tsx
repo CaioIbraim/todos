@@ -55,7 +55,7 @@ export default function Home({todos : severTodos}) {
   }
 
 
-  const handleDeleteTOdo = async (id: string) => {
+  const handleDeleteTodo = async (id: string) => {
    const currentTodos = todos.filter((todo) => todo.id !== id)
    await api.post("/api/deleteTodo", {id})
    setTodos(currentTodos)
@@ -91,7 +91,18 @@ export default function Home({todos : severTodos}) {
 						className="px-3 font-medium transition-colors duration-150 bg-white border-2 border-blue-400 rounded-lg cursor-pointer hover:bg-blue-100"
 						key={todo.id || todo.task}
 						onClick={() => handleUpdateTodo(todo.id)}>
-						<p className={`${todo.status && "line-through"}`}>{todo.task}</p>
+
+            <div className="flex">
+              <p className={`${todo.status && "line-through"}`}>
+                {todo.task}  
+              </p>
+              <button
+                className="px-4 mx-2 float-right text-lg font-medium text-white transition-colors duration-200 bg-red-500 rounded-lg duration-20transition-colors hover:red-blue-700"
+                onClick={() => handleDeleteTodo(todo.id)}>
+                Delete
+              </button>
+            </div>
+
 					</li>
 				))}
 			</ul>
